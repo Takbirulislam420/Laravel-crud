@@ -10,11 +10,16 @@ class userAccountController extends Controller
     public function index(){
         
         // order by id asc/desc
-         //$usersData=DB::table('user_accounts')->orderBy('id','desc')->get();
+         //$usersData=DB::table('user_accounts')
+                      //->orderBy('id','desc')
+                      //->get();
         //get all data
         //$usersData=DB::table('user_accounts')->get();
+
         // for pagination
-         $usersData=DB::table('user_accounts')->orderBy('id','desc')->paginate(1);
+         $usersData=DB::table('user_accounts')
+                    ->orderBy('id','asc')
+                    ->paginate(1);
         return view('pages.index',['usersData'=>$usersData]);
     }
 
@@ -25,12 +30,13 @@ class userAccountController extends Controller
     public function store(Request $request){
         $email=$request->email;
         $password=$request->password;
-        $uniqcData=9;
+        $uniqcData=11;
+        $imagePath=null;
         if($request->hasFile('image')){
             $imagePath= $request->file('image')->store('user_image','public');
         }
 
-        DB::table('user_accounts')->insert([
+        $insertData=DB::table('user_accounts')->insert([
             'email'=>$email,
             'password'=>$password,
             'account_number'=>$uniqcData,
@@ -39,8 +45,7 @@ class userAccountController extends Controller
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
-        return redirect()->route('home')->with('success', 'User added successfully!');
-
+            return redirect()->route('home')->with('success', 'User added successfully!');
     }
 
     public function edit($id){
@@ -65,7 +70,6 @@ class userAccountController extends Controller
             'password'=>$request->password,
             'otp'=>$imagePath,
             'updated_at'=>now()
-
         ]);
         return redirect()->route('home')->with('success', 'User updated successfully!');
     }
