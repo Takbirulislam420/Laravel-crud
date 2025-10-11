@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\DB;
 class userAccountController extends Controller
 {
     public function index(){
-        $usersData=DB::table('user_accounts')->get();
+        
+        // order by id asc/desc
+         //$usersData=DB::table('user_accounts')->orderBy('id','desc')->get();
+        //get all data
+        //$usersData=DB::table('user_accounts')->get();
+        // for pagination
+         $usersData=DB::table('user_accounts')->orderBy('id','desc')->paginate(1);
         return view('pages.index',['usersData'=>$usersData]);
     }
 
@@ -19,10 +25,9 @@ class userAccountController extends Controller
     public function store(Request $request){
         $email=$request->email;
         $password=$request->password;
-        $uniqcData=5;
+        $uniqcData=9;
         if($request->hasFile('image')){
             $imagePath= $request->file('image')->store('user_image','public');
-
         }
 
         DB::table('user_accounts')->insert([

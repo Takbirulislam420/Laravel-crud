@@ -26,7 +26,7 @@
         <tbody>
             @foreach ($usersData as $userData)
             <tr>
-                <td>{{$userData->id}}</td>
+                <td>{{ $loop->iteration + $usersData->firstItem() - 1 }}</td>
                 <td>{{$userData->email}}</td>
                 <td>{{$userData->password}}</td>
                 <td>
@@ -51,9 +51,8 @@
             
         </tbody>
     </table>
+    {{ $usersData->links('pagination::bootstrap-5') }}
 
   </div>
-
-
-    
+  
 @endsection
