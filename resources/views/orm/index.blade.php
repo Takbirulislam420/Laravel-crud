@@ -3,9 +3,9 @@
 
 
   <div class="container">
-    {{-- @if (session('success'))
+    @if (session('success'))
         <div class="alert alert-success">{{session('success')}}</div>
-    @endif --}}
+    @endif
     
     <h1 class="text-primary text-center mt-5">Show all of the user</h1>
   </div>
