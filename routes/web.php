@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrmController;
 use App\Http\Controllers\userAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,3 +14,6 @@ Route::post('/{id}/update',[userAccountController::class,'update'])->name('updat
 //delete
 Route::post('/{id}/delete',[userAccountController::class,'destroy'])->name('delete');
 
+
+//ORM EXAMPLE
+Route::get('/orm',[OrmController::class,'ormExample'])->name('ormExample');
