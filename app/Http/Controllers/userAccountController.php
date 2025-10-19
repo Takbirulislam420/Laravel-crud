@@ -19,7 +19,7 @@ class userAccountController extends Controller
         // for pagination
          $usersData=DB::table('user_accounts')
                     ->orderBy('id','asc')
-                    ->paginate(1);
+                    ->paginate(5);
         return view('pages.index',['usersData'=>$usersData]);
     }
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\UserAccount;
 use App\Models\UserProfile;
-use PhpParser\Node\Expr\Print_;
 
 class OrmController extends Controller
 {
@@ -52,14 +51,23 @@ class OrmController extends Controller
             // $mexBalance= UserAccount::max('balance');   // mex balance of the max column
 
 
+            // filter data with condition
+            // $filterData= UserAccount::where('columnName','>=',5)
+            //                         ->where('columnName','<=',10)
+            //                         ->get();
 
 
-            return view('orm.index',compact('user_account'));
+            // Advance query
+            // $advanceQuery= UserAccount::where('columnName','>',50)
+            //                           ->where(function($q){
+            //                             $q->where('price','>',59)
+            //                             ->orwhere('name','Cake');
+            //                           })->get();
 
 
-
-        // if ($storeUser==true) {
             
+            return view('orm.index',compact('user_account'));
+        // if ($storeUser==true) {
         // } else {
         //     return view('orm.index',compact('user_account'))->with('success','orm successfull');
         // }

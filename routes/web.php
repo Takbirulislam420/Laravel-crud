@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DemoEloquentController;
 use App\Http\Controllers\OrmController;
 use App\Http\Controllers\userAccountController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,5 @@ Route::post('/{id}/delete',[userAccountController::class,'destroy'])->name('dele
 
 //ORM EXAMPLE
 Route::get('/orm',[OrmController::class,'ormExample'])->name('ormExample');
+Route::get('/oneToOne',[DemoEloquentController::class,'oneToOne']);  
+Route::get('/hasMany',[DemoEloquentController::class,'hasMany']);  //transaction
